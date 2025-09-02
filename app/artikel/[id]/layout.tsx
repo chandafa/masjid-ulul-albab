@@ -1,11 +1,8 @@
 import type { Metadata } from "next";
 
-// Pakai tipe resmi dari Next.js
-type Props = {
-  params: { id: string };
-};
-
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata(
+  { params }: { params: { id: string } }
+): Promise<Metadata> {
   const articleId = params.id;
 
   return {
