@@ -134,6 +134,7 @@ import OrganizationSection from "./components/section/OrganizationSection";
 import FinanceSection from "./components/section/FinanceSection";
 import ActivitiesSection from "./components/section/ActivitiesSection";
 import GallerySection from "./components/section/GallerySection";
+import ArticlesSection from "./components/section/ArticlesSection";
 import ContactSection from "./components/section/ContactSection";
 import MapSection from "./components/section/MapSection";
 import FooterSection from "./components/section/FooterSection";
@@ -147,9 +148,11 @@ export default function Home() {
   const [showOrgChart, setShowOrgChart] = useState(false); // Tambah state ini
   const [activeTab, setActiveTab] = useState("rutin"); // Untuk tab kegiatan
   const [showAllGallery, setShowAllGallery] = useState(false); // Untuk gallery
+  const [showAllArticles, setShowAllArticles] = useState(false); // Untuk articles
   const [announcements, setAnnouncements] = useState<AnnouncementData[]>([]);
   const [galleryItems, setGalleryItems] = useState<GalleryData[]>([]);
   const [activities, setActivities] = useState<ActivityData[]>([]);
+  const [articles, setArticles] = useState<ArticleData[]>([]);
   const [loadingContent, setLoadingContent] = useState(true);
   const [financeData, setFinanceData] = useState<FinanceData[]>([]);
   const [financeSummary, setFinanceSummary] = useState<FinanceSummary | null>(
@@ -304,22 +307,25 @@ export default function Home() {
   const fetchContentData = async () => {
     try {
       setLoadingContent(true);
-      const [announcementsData, galleryData, activitiesData] =
+      const [announcementsData, galleryData, activitiesData, articlesData] =
         await Promise.all([
           googleSheetsService.getAnnouncements(),
           googleSheetsService.getGalleryItems(),
           googleSheetsService.getActivities(),
+          googleSheetsService.getArticles(),
         ]);
 
       // console.log("✅ Content data received:", {
       //   announcements: announcementsData.length,
       //   gallery: galleryData.length,
       //   activities: activitiesData.length,
+      //   articles: articlesData.length,
       // });
 
       setAnnouncements(announcementsData);
       setGalleryItems(galleryData);
       setActivities(activitiesData);
+      setArticles(articlesData);
     } catch (error) {
       console.error("❌ fetchContentData error:", error);
 
@@ -340,6 +346,7 @@ export default function Home() {
       ]);
       setGalleryItems([]);
       setActivities([]);
+      setArticles([]);
     } finally {
       // console.log("🏁 fetchContentData finished");
       setLoadingContent(false);
@@ -770,6 +777,12 @@ export default function Home() {
         loading={loadingContent}
         showAllGallery={showAllGallery}
         onToggleShowAll={setShowAllGallery}
+      />
+      <ArticlesSection
+        articles={articles}
+        loading={loadingContent}
+        showAllArticles={showAllArticles}
+        onToggleShowAll={setShowAllArticles}
       />
       <ContactSection
         contactLoading={contactLoading}

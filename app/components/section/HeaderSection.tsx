@@ -72,6 +72,14 @@ export default function HeaderSection() {
                 Kegiatan
               </a>
             </li>
+            <li>
+              <a
+                href="#articles"
+                className="text-gray-800 hover:text-green-600 transition"
+              >
+                Artikel
+              </a>
+            </li>
           </ul>
         </nav>
       </div>
@@ -120,6 +128,14 @@ export default function HeaderSection() {
               className="block text-gray-800 hover:text-green-600 transition"
             >
               Kegiatan
+            </a>
+          </li>
+          <li>
+            <a
+              href="#articles"
+              className="block text-gray-800 hover:text-green-600 transition"
+            >
+              Artikel
             </a>
           </li>
         </ul>
