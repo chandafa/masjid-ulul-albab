@@ -17,6 +17,7 @@ import {
   PaginatedFinanceData,
   type ContactData,
   ContactSubmissionResponse,
+  ArticleData,
 } from "../lib/googleSheets";
 import Image from "next/image";
 // Interface untuk data jadwal sholat Aladhan API (Updated)
@@ -741,8 +742,12 @@ export default function Home() {
         loading={loading}
         error={error}
         location={location}
-        onRefresh={fetchPrayerTimes}
-      />
+        onRefresh={fetchPrayerTimes} meta={{
+          methodName: undefined,
+          schoolName: undefined,
+          fajrDegree: undefined,
+          ishaDegree: undefined
+        }}      />
       <AnnouncementSection
         announcements={announcements}
         loading={loadingContent}
