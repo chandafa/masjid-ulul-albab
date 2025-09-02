@@ -88,6 +88,14 @@ export default function FooterSection({
                   Kegiatan
                 </a>
               </li>
+              <li>
+                <a
+                  href="#articles"
+                  className="text-gray-400 hover:text-white transition"
+                >
+                  Artikel
+                </a>
+              </li>
             </ul>
           </div>
 

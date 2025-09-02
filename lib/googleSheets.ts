@@ -86,6 +86,16 @@ export interface ContactSubmissionResponse {
   data?: ContactData;
 }
 
+export interface ArticleData {
+  id: string;
+  title: string;
+  author: string;
+  date: string;
+  category: string;
+  content: string;
+  imageUrl: string;
+  isActive: boolean;
+}
 class GoogleSheetsService {
   private static instance: GoogleSheetsService;
   private isDev = process.env.NODE_ENV === "development";
@@ -325,6 +335,15 @@ class GoogleSheetsService {
     return activities.find((activity) => activity.id === id) || null;
   }
 
+  async getArticles(): Promise<ArticleData[]> {
+    const rows = await this.fetchFromApi("article");
+    return rows.filter((article) => article.isActive);
+  }
+
+  async getArticleById(id: string): Promise<ArticleData | null> {
+    const articles = await this.getArticles();
+    return articles.find((article) => article.id === id) || null;
+  }
   async getFinanceData(): Promise<FinanceData[]> {
     const items = await this.fetchFromApi("finance");
     return items
@@ -377,6 +396,18 @@ class GoogleSheetsService {
     };
   }
 
+  private parseRowToArticle(row: string[]): ArticleData {
+    return {
+      id: row[0] || "",
+      title: row[1] || "",
+      author: row[2] || "",
+      date: row[3] || "",
+      category: row[4] || "",
+      content: row[5] || "",
+      imageUrl: row[6] || "",
+      isActive: row[7]?.toLowerCase() === "true",
+    };
+  }
   // Update parseRowToFinance untuk consistent date formatting
   private parseRowToFinance(row: string[], index: number): FinanceData {
     const income = this.parseCurrency(row[2] || "0");
