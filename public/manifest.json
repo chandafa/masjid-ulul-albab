@@ -1,0 +1,50 @@
+{
+  "name": "Masjid Ulul Albaab",
+  "short_name": "Ulul Albaab",
+  "description": "Website Resmi Masjid Jami' Ulul Albaab UNPAS",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#16a34a",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "categories": ["religion", "lifestyle"],
+  "lang": "id",
+  "scope": "/",
+  "shortcuts": [
+    {
+      "name": "Jadwal Sholat",
+      "short_name": "Sholat",
+      "description": "Lihat jadwal sholat hari ini",
+      "url": "/#prayer-times",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Kegiatan",
+      "short_name": "Kegiatan",
+      "description": "Lihat kegiatan masjid",
+      "url": "/#activities",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Kontak",
+      "short_name": "Kontak",
+      "description": "Hubungi masjid",
+      "url": "/#contact",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

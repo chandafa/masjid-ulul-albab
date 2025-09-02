@@ -1,0 +1,401 @@
+@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  /* Green Color Scheme Variables */
+  --green-primary: #059669; /* green-600 - Hijau utama */
+  --green-secondary: #10b981; /* green-500 - Hijau terang */
+  --green-dark: #047857; /* green-700 - Hijau gelap */
+  --green-darker: #065f46; /* green-800 - Hijau lebih gelap */
+  --green-light: #34d399; /* green-400 - Hijau muda */
+  --green-lighter: #6ee7b7; /* green-300 - Hijau sangat muda */
+  --green-bg: #ecfdf5; /* green-50 - Background hijau */
+  --green-accent: #a7f3d0; /* green-200 - Accent hijau */
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #000000;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "Poppins", sans-serif;
+  scroll-behavior: smooth;
+}
+
+/* Update mosque icon color to green */
+.mosque-icon {
+  color: var(--green-primary);
+}
+
+.section-title {
+  position: relative;
+  display: inline-block;
+}
+
+/* Update section title underline to green */
+.section-title::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 50%;
+  height: 3px;
+  background: var(--green-primary);
+}
+
+.finance-card {
+  transition: all 0.3s ease;
+}
+
+.finance-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.org-chart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.org-level {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+.org-node {
+  background: white;
+  border-radius: 8px;
+  padding: 15px;
+  margin: 0 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  min-width: 180px;
+  position: relative;
+}
+
+/* Update org chart connectors to green */
+.org-node::after {
+  content: "";
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 15px;
+  background: var(--green-primary);
+}
+
+.org-node:last-child::after {
+  display: none;
+}
+
+.org-connector {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 15px;
+  background: var(--green-primary);
+}
+
+.activity-card {
+  transition: all 0.3s ease;
+}
+
+.activity-card:hover {
+  transform: scale(1.03);
+}
+
+.prayer-time {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+}
+
+/* Update active nav to green */
+.active-nav {
+  color: var(--green-primary);
+  font-weight: 600;
+}
+
+/* Utility classes untuk memudahkan penggunaan */
+.bg-green-primary {
+  background-color: var(--green-primary);
+}
+.bg-green-secondary {
+  background-color: var(--green-secondary);
+}
+.bg-green-dark {
+  background-color: var(--green-dark);
+}
+.bg-green-light {
+  background-color: var(--green-light);
+}
+.bg-green-bg {
+  background-color: var(--green-bg);
+}
+
+.text-green-primary {
+  color: var(--green-primary);
+}
+.text-green-secondary {
+  color: var(--green-secondary);
+}
+.text-green-dark {
+  color: var(--green-dark);
+}
+.text-green-light {
+  color: var(--green-light);
+}
+
+.border-green-primary {
+  border-color: var(--green-primary);
+}
+.border-green-secondary {
+  border-color: var(--green-secondary);
+}
+
+/* Hover states untuk green */
+.hover-bg-green-dark:hover {
+  background-color: var(--green-dark);
+}
+.hover-bg-green-darker:hover {
+  background-color: var(--green-darker);
+}
+.hover-text-green-primary:hover {
+  color: var(--green-primary);
+}
+
+/* Custom scrollbar untuk tabel */
+.overflow-x-auto {
+  scrollbar-width: thin;
+  scrollbar-color: #10b981 #f3f4f6;
+  /* Add shadows to indicate scrollable content */
+  background: linear-gradient(90deg, white 30%, rgba(255, 255, 255, 0)),
+    linear-gradient(90deg, rgba(255, 255, 255, 0), white 70%),
+    radial-gradient(
+      farthest-side at 0 50%,
+      rgba(0, 0, 0, 0.1),
+      rgba(0, 0, 0, 0)
+    ),
+    radial-gradient(
+      farthest-side at 100% 50%,
+      rgba(0, 0, 0, 0.1),
+      rgba(0, 0, 0, 0)
+    );
+  background-position: 0 0, 100% 0, 0 0, 100% 0;
+  background-repeat: no-repeat;
+  background-size: 40px 100%, 40px 100%, 14px 100%, 14px 100%;
+  background-attachment: local, local, scroll, scroll;
+}
+
+.overflow-x-auto::-webkit-scrollbar {
+  height: 6px;
+}
+
+.overflow-x-auto::-webkit-scrollbar-track {
+  background: #f3f4f6;
+  border-radius: 3px;
+}
+
+.overflow-x-auto::-webkit-scrollbar-thumb {
+  background: #10b981;
+  border-radius: 3px;
+}
+
+.overflow-x-auto::-webkit-scrollbar-thumb:hover {
+  background: #059669;
+}
+
+/* Shadow untuk menunjukkan ada content yang bisa di-scroll */
+.overflow-x-auto {
+  background: linear-gradient(90deg, white 30%, rgba(255, 255, 255, 0)),
+    linear-gradient(90deg, rgba(255, 255, 255, 0), white 70%),
+    radial-gradient(
+      farthest-side at 0 50%,
+      rgba(0, 0, 0, 0.2),
+      rgba(0, 0, 0, 0)
+    ),
+    radial-gradient(
+      farthest-side at 100% 50%,
+      rgba(0, 0, 0, 0.2),
+      rgba(0, 0, 0, 0)
+    );
+  background-position: 0 0, 100% 0, 0 0, 100% 0;
+  background-repeat: no-repeat;
+  background-size: 40px 100%, 40px 100%, 14px 100%, 14px 100%;
+  background-attachment: local, local, scroll, scroll;
+}
+/* Table cell truncation for long text */
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Hover effects for table rows */
+.hover\:bg-gray-50:hover {
+  transition: background-color 0.15s ease-in-out;
+}
+
+/* Loading state for pagination buttons */
+.disabled\:opacity-50:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Sortable table headers */
+th button {
+  transition: all 0.2s ease;
+}
+
+th button:hover {
+  transform: translateY(-1px);
+}
+
+th button:active {
+  transform: translateY(0);
+}
+
+/* Sort icons animation */
+.fa-sort,
+.fa-sort-up,
+.fa-sort-down {
+  transition: all 0.2s ease;
+}
+
+/* Enhanced hover effects for table rows */
+.group:hover .truncate {
+  overflow: visible;
+  white-space: normal;
+  max-width: none;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 2px 4px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  position: relative;
+}
+
+/* Loading state for sort buttons */
+th button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Quick sort buttons animation */
+.quick-sort-btn {
+  transition: all 0.2s ease;
+}
+
+.quick-sort-btn:hover {
+  transform: scale(1.05);
+}
+
+/* Responsive table enhancements */
+@media (max-width: 768px) {
+  th button {
+    font-size: 0.75rem;
+    padding: 0.25rem;
+  }
+
+  .fa-sort,
+  .fa-sort-up,
+  .fa-sort-down {
+    font-size: 0.7rem;
+  }
+}
+
+/* Responsive pagination */
+@media (max-width: 768px) {
+  .pagination-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .pagination-buttons {
+    margin-top: 1rem;
+  }
+}
+
+/* Contact form enhancements */
+.contact-form input:focus,
+.contact-form textarea:focus {
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+  transform: translateY(-1px);
+}
+
+.contact-form input,
+.contact-form textarea {
+  transition: all 0.2s ease;
+}
+
+.contact-form input:hover:not(:disabled),
+.contact-form textarea:hover:not(:disabled) {
+  border-color: #10b981;
+}
+
+/* Success/Error message animations */
+.message-enter {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.message-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.message-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.message-exit-active {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Loading state for form */
+.form-loading {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+/* Contact quick actions */
+.quick-contact-btn {
+  transition: all 0.2s ease;
+}
+
+.quick-contact-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive contact section */
+@media (max-width: 768px) {
+  .contact-info {
+    margin-bottom: 2rem;
+  }
+
+  .contact-form {
+    padding: 0;
+  }
+}
