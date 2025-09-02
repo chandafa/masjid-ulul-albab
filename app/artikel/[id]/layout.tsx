@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export async function generateMetadata(
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ): Promise<Metadata> {
-  const articleId = params.id;
+  const { id: articleId } = await params;
 
   return {
     title: `Artikel - Masjid Ulul Albaab`,
@@ -18,8 +18,10 @@ export async function generateMetadata(
 
 export default function ArticleDetailLayout({
   children,
+  params,
 }: {
   children: React.ReactNode;
+  params: Promise<{ id: string }>;
 }) {
   return children;
 }
