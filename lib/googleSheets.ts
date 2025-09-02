@@ -320,6 +320,11 @@ class GoogleSheetsService {
     return rows.filter((activity) => activity.isActive);
   }
 
+  async getActivityById(id: string): Promise<ActivityData | null> {
+    const activities = await this.getActivities();
+    return activities.find((activity) => activity.id === id) || null;
+  }
+
   async getFinanceData(): Promise<FinanceData[]> {
     const items = await this.fetchFromApi("finance");
     return items

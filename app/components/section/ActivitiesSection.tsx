@@ -6,8 +6,10 @@ import {
   faUsers,
   faSpinner,
   faStar,
+  faEye,
 } from "@fortawesome/free-solid-svg-icons";
 import { ActivityData } from "../../../lib/googleSheets";
+import Link from "next/link";
 
 interface ActivitiesSectionProps {
   activities: ActivityData[];
@@ -116,6 +118,17 @@ export default function ActivitiesSection({
                           {activity.participants}
                         </span>
                       </div>
+                      
+                      {/* Detail Button */}
+                      <div className="mt-3 pt-3 border-t border-gray-100">
+                        <Link
+                          href={`/kegiatan/${activity.id}`}
+                          className="w-full bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition flex items-center justify-center"
+                        >
+                          <FontAwesomeIcon icon={faEye} className="mr-2" />
+                          Lihat Detail
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 ))}
@@ -151,6 +164,17 @@ export default function ActivitiesSection({
                           />
                           <span>{activity.schedule}</span>
                         </div>
+                        
+                        {/* Detail Button */}
+                        <div className="mt-3">
+                          <Link
+                            href={`/kegiatan/${activity.id}`}
+                            className="inline-flex items-center bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded text-sm font-medium transition"
+                          >
+                            <FontAwesomeIcon icon={faEye} className="mr-1" />
+                            Detail
+                          </Link>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -180,6 +204,13 @@ export default function ActivitiesSection({
                         <p className="text-xs text-gray-500">
                           {activity.instructor} • {activity.location}
                         </p>
+                        <Link
+                          href={`/kegiatan/${activity.id}`}
+                          className="inline-flex items-center bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded text-xs font-medium transition"
+                        >
+                          <FontAwesomeIcon icon={faEye} className="mr-1" />
+                          Detail
+                        </Link>
                       </div>
                     ))}
                   </div>
@@ -205,6 +236,9 @@ export default function ActivitiesSection({
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                           Peserta
                         </th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                          Aksi
+                        </th>
                       </tr>
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-200">
@@ -224,6 +258,15 @@ export default function ActivitiesSection({
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                             {activity.participants}
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm">
+                            <Link
+                              href={`/kegiatan/${activity.id}`}
+                              className="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded text-xs font-medium transition inline-flex items-center"
+                            >
+                              <FontAwesomeIcon icon={faEye} className="mr-1" />
+                              Detail
+                            </Link>
                           </td>
                         </tr>
                       ))}
