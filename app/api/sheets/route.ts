@@ -1,6 +1,7 @@
 import {
   ActivityData,
   AnnouncementData,
+  AnnouncementDetailData,
   FinanceData,
   GalleryData,
   ArticleData,
@@ -108,6 +109,21 @@ function parseRowToArticle(row: string[]) {
     isActive: row[7]?.toLowerCase() === "true",
   };
 }
+
+function parseRowToAnnouncementDetail(row: string[]) {
+  return {
+    id: row[0] || "",
+    title: row[1] || "",
+    description: row[2] || "",
+    speaker: row[3] || "",
+    staff: row[4] || "",
+    datetime: row[5] || "",
+    location: row[6] || "",
+    participants: row[7] || "",
+    isActive: row[8]?.toLowerCase() === "true",
+  };
+}
+
 function parseRowToFinance(row: string[], index: number) {
   const income = parseCurrency(row[2] || "0");
   const expense = parseCurrency(row[3] || "0");
@@ -136,6 +152,7 @@ function getSheetUrl(type: string) {
   else if (type === "gallery") sheetName = "Galeri";
   else if (type === "activity") sheetName = "Kegiatan";
   else if (type === "article") sheetName = "Artikel";
+  else if (type === "announcement-detail") sheetName = "Detail_Pengumuman";
   else if (type === "finance") {
     sheetName = "Dashboard";
     spreadsheetId = FINANCE_SPREADSHEET_ID;
@@ -204,6 +221,12 @@ export async function GET(req: NextRequest) {
         .filter((article: ArticleData) => article.isActive);
       return NextResponse.json({ values: parsed });
     }
+
+    if (type === "announcement-detail") {
+      const parsed = rows.map(parseRowToAnnouncementDetail);
+      return NextResponse.json({ values: parsed });
+    }
+
     if (type === "finance") {
       const parsed = rows
         .map((row: string[], idx: number) => parseRowToFinance(row, idx))

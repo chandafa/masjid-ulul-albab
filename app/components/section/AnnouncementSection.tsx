@@ -1,8 +1,9 @@
 "use client";
 // components/sections/AnnouncementSection.tsx
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBullhorn, faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { faBullhorn, faSpinner, faEye } from "@fortawesome/free-solid-svg-icons";
 import { AnnouncementData } from "@/lib/googleSheets";
+import Link from "next/link";
 
 interface AnnouncementSectionProps {
   announcements: AnnouncementData[];
@@ -53,14 +54,25 @@ export default function AnnouncementSection({
                     <p className="text-gray-600">{announcement.content}</p>
                   </div>
                 </div>
-                {announcement.buttonText && announcement.buttonLink && (
-                  <a
-                    href={announcement.buttonLink}
-                    className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition"
+                <div className="flex flex-col sm:flex-row gap-2">
+                  <Link
+                    href={`/pengumuman/${announcement.id}`}
+                    className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition flex items-center justify-center"
                   >
-                    {announcement.buttonText}
-                  </a>
-                )}
+                    <FontAwesomeIcon icon={faEye} className="mr-2" />
+                    Lihat Detail
+                  </Link>
+                  {/* {announcement.buttonText && announcement.buttonLink && (
+                    <a
+                      href={announcement.buttonLink}
+                      className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition flex items-center justify-center"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {announcement.buttonText}
+                    </a>
+                  )} */}
+                </div>
               </div>
             ))}
           </div>

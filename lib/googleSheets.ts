@@ -86,6 +86,18 @@ export interface ContactSubmissionResponse {
   data?: ContactData;
 }
 
+export interface AnnouncementDetailData {
+  id: string;
+  title: string;
+  description: string;
+  speaker: string;
+  staff: string;
+  datetime: string;
+  location: string;
+  participants: string;
+  isActive: boolean;
+}
+
 export interface ArticleData {
   id: string;
   title: string;
@@ -344,6 +356,15 @@ class GoogleSheetsService {
     const articles = await this.getArticles();
     return articles.find((article) => article.id === id) || null;
   }
+
+  async getAnnouncementDetailById(
+    id: string
+  ): Promise<AnnouncementDetailData | null> {
+    const rows = await this.fetchFromApi("announcement-detail");
+    const announcement = rows.find((row: any) => row.id === id);
+    return announcement || null;
+  }
+
   async getFinanceData(): Promise<FinanceData[]> {
     const items = await this.fetchFromApi("finance");
     return items
@@ -408,6 +429,21 @@ class GoogleSheetsService {
       isActive: row[7]?.toLowerCase() === "true",
     };
   }
+
+  private parseRowToAnnouncementDetail(row: string[]): AnnouncementDetailData {
+    return {
+      id: row[0] || "",
+      title: row[1] || "",
+      description: row[2] || "",
+      speaker: row[3] || "",
+      staff: row[4] || "",
+      datetime: row[5] || "",
+      location: row[6] || "",
+      participants: row[7] || "",
+      isActive: row[8]?.toLowerCase() === "true",
+    };
+  }
+
   // Update parseRowToFinance untuk consistent date formatting
   private parseRowToFinance(row: string[], index: number): FinanceData {
     const income = this.parseCurrency(row[2] || "0");
