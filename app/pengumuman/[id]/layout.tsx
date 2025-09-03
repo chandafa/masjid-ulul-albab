@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 
 interface Props {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const announcementId = params.id;
+  const { id: announcementId } = await params;
   
   return {
     title: `Pengumuman - Masjid Ulul Albaab`,
@@ -20,8 +20,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default function AnnouncementDetailLayout({
   children,
+  params,
 }: {
   children: React.ReactNode;
+  params: Promise<{ id: string }>;
 }) {
   return children;
 }
